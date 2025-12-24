@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> All Products - ShopwithMe </title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+
+    <div class="container">
+
+        <div class="navbar">
+
+            <div class="logo">
+
+                <img src="images/logo.png" width="135px">
+
+            </div>
+
+            <nav>
+
+                <ul id="MenuItems">
+
+                   
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="products.html">Products</a></li>
+
+                    <li><a href="">About</a></li>
+
+                    <li><a href="">Contact</a></li>
+
+                    <li><a href="accounts.html">Account</a></li>
+
+
+   
+
+                </ul>
+
+            </nav>
+            <img src="images/cart.png" width="30px" height="30px">
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+
+
+        </div>
+
+    </div>
+    <!----cart item details---->
+    <div class="small-container cart-page">
+        <table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Action</th> <!-- Added a column to remove items -->
+        </tr>
+    </thead>
+    <!-- We added an ID here so JavaScript can find it -->
+    <tbody id="cart-table-body">
+        <!-- Rows will be added here by Java + JS -->
+      </tbody>
+   </table> 
+   <div class="total-price">
+    <!-- We add this simple DIV wrapper to stop the button from stretching -->
+    <div style="display: flex; flex-direction: column; align-items: flex-end;">
+        
+        <table id="total-table">
+            <tr>
+                <td>Subtotal</td>
+                <td>₹0.00</td>
+            </tr>
+            <tr>
+                <td>Tax</td>
+                <td>₹0.00</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>₹0.00</strong></td>
+            </tr>
+        </table>
+
+        <!-- The button is now inside the column, below the table -->
+        <a href="accounts.html" class="btn">Proceed to Checkout &#8594;</a>
+        
+    </div>
+</div> 
+
+    </div>
+
+
+
+    </div>
+ <!-------footer------>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download our App</h3>
+                <p>Download App for Android and ios mobile phone.</p>
+                <div class="app-logo">
+                    <img src="images/play-store.png">
+                    <img src="images/app-store.png">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="images/logo.png">
+               <p>Customer satisfation is you first choice and its our<br> pleasure to please the customers through our service.</p>
+           </div>
+           <div class="footer-col-3">
+               <h3>Useful Links</h3>
+                <ul>
+                   <li>Coupons</li>
+                   <li>Blog post</li>
+                   <li>Return Policy</li>
+                   <li>Join Affliate</li>
+                </ul>
+           </div>
+           <div class="footer-col-4">
+               <h3>follow us</h3>
+                <ul>
+                   <li> Facebook</li>
+                   <li>Twitter</li>
+                   <li>Instagram</li>
+                   <li>YouTube</li>
+                </ul>
+           </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2022 - ShopWith Me</p>
+    </div>
+</div>
+<!--js for toggle menu-->
+<script>
+    var MenuItems = document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight = "0px";
+    function menutoggle(){
+        if(MenuItems.style.maxHeight == "0px")
+        {
+            MenuItems.style.maxHeight = "200px";
+        }
+        else
+        {
+            MenuItems.style.maxHeight = "0px";
+
+        }
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+    });
+
+    async function loadCart() {
+        try {
+            // 1. Call the Java API
+            const response = await fetch('http://localhost:8080/api/cart');
+            const cartItems = await response.json();
+
+            const tableBody = document.getElementById('cart-table-body');
+            tableBody.innerHTML = ''; // Clear any existing content
+            
+            let subtotal = 0;
+
+           // 2. Loop through each item
+            cartItems.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                const row = `
+                    <tr>
+                        <td>
+                            <div class="cart-info">
+                                <img src="${item.imageUrl}">
+                                <div>
+                                    <p>${item.productName}</p>
+                                    <small>Price: ₹${item.price}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td><input type="number" value="${item.quantity}" readonly></td>
+                        <td>₹${itemTotal}</td>
+                        <!-- FIX: Put the Remove button in the 4th column -->
+                        <td><a href="#" style="color:red; cursor:pointer;" onclick="removeItem(${item.id})">Remove</a></td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+
+            // 3. Update the Total Price Table
+            updateTotal(subtotal);
+
+        } catch (error) {
+            console.error("Error loading cart:", error);
+        }
+    }
+
+    // Function to Calculate Totals
+    function updateTotal(subtotal) {
+        const tax = subtotal * 0.18; // 18% Tax
+        const total = subtotal + tax;
+
+        const totalTable = document.getElementById('total-table');
+        
+        // We overwrite the inner HTML of the total table with the new math
+        if(totalTable) {
+            totalTable.innerHTML = `
+                <tr>
+                    <td>Subtotal</td>
+                    <td>₹${subtotal.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <td>Tax (18%)</td>
+                    <td>₹${tax.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>₹${total.toFixed(2)}</strong></td>
+                </tr>
+            `;
+        }
+    }
+
+    // Function to Remove Item
+    async function removeItem(id) {
+        if(confirm("Are you sure you want to remove this item?")) {
+            await fetch(`http://localhost:8080/api/cart/${id}`, { method: 'DELETE' });
+            loadCart(); // Reload the list
+        }
+    }
+</script>
+
+</body>
+</html>

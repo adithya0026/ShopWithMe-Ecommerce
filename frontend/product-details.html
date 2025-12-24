@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> All Products - ShopwithMe </title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+
+    <div class="container">
+
+        <div class="navbar">
+
+            <div class="logo">
+
+                <img src="images/logo.png" width="135px">
+
+            </div>
+
+            <nav>
+
+                <ul id="MenuItems">
+
+                    <li><a href="index.html">Home</a></li>
+
+                    <li><a href="products.html">Products</a></li>
+
+                    <li><a href="">About</a></li>
+
+                    <li><a href="">Contact</a></li>
+
+                    <li><a href="accounts.html">Account</a></li>
+
+
+                    
+   
+
+                </ul>
+
+            </nav>
+            <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+
+
+        </div>
+
+    </div>
+<!----- Single product details    ----->
+<div class="small-container single-product">
+    <div class="row">
+        <div class="col-2">
+            <img src="images/gallery-1.jpg" width="100%" id="ProductImg">
+            <div class="small-img-row">
+                <div class="small-img-col">
+                    <img src="images/gallery-1.jpg" width="100%" class="small-img">
+                 </div>
+                 <div class="small-img-col">
+                    <img src="images/gallery-2.jpg" width="100%" class="small-img">
+                 </div>
+                 <div class="small-img-col">
+                    <img src="images/gallery-3.jpg" width="100%" class="small-img">
+                 </div>
+                 <div class="small-img-col">
+                    <img src="images/gallery-4.jpg" width="100%" class="small-img">
+                 </div>
+                
+
+            </div>
+
+
+
+
+        </div>
+        <div class="col-2">
+    <!-- 1. Add ID here -->
+    <p id="details-category">Home / T-Shirt</p>
+    
+    <!-- 2. Add ID here -->
+    <h1 id="details-name">Red Printed T-Shirt by PUMA</h1>
+    
+    <!-- 3. Add ID here -->
+    <h4 id="details-price">₹350</h4>
+    
+    <select>
+        <option>Select Size</option>
+        <option>XXL</option>
+        <option>XL</option>
+        <option>Large</option>
+        <option>Medium</option>
+        <option>Small</option>
+    </select>
+    <input type="number" value="1">
+    <a class="btn" onclick="addToCart()">Add to Cart</a>
+    <h3>Product Details <i class="fa fa-indent"></i></h3>
+    <br>
+    
+    <!-- 4. Add ID here -->
+    <p id="details-description">Give your summer wardrobe a style upgrade with the HRX Men's Active T-shirts. Team it with a pair of shorts for your morning workout or a denims for an evening out with the guys.</p>
+</div>
+        
+         
+    </div>
+</div>
+
+<!--------- title --------->
+<div class="small-container">
+    <div class="row row-2">
+        <h2>Related Products</h2>
+        <p>View More</p>
+    </div>
+</div>
+
+<!--------------- products ---------------->
+
+
+
+
+
+
+
+<div class="small-container">  
+    
+    <div class="row">
+        <div class="col-4">
+            <img src="images/product-9.jpg">
+            <h4>Roadster watch</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+
+            </div>
+            <p>₹800</p>
+        </div>
+        <div class="col-4">
+            <img src="images/product-10.jpg">
+            <h4>Sparx sports shoe</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
+
+            </div>
+            <p>₹1199</p>
+        </div>
+        <div class="col-4">
+            <img src="images/product-11.jpg">
+            <h4>Asian casual shoes</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+
+            </div>
+            <p>₹550</p>
+        </div>
+        <div class="col-4">
+            <img src="images/product-12.jpg">
+            <h4>Black trouser for men</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+
+            </div>
+            <p>₹250</p>
+        </div>
+    </div>
+</div>
+
+ <!-------footer------>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download our App</h3>
+                <p>Download App for Android and ios mobile phone.</p>
+                <div class="app-logo">
+                    <img src="images/play-store.png">
+                    <img src="images/app-store.png">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="images/logo.png">
+               <p>Customer satisfation is you first choice and its our<br> pleasure to please the customers through our service.</p>
+           </div>
+           <div class="footer-col-3">
+               <h3>Useful Links</h3>
+                <ul>
+                   <li>Coupons</li>
+                   <li>Blog post</li>
+                   <li>Return Policy</li>
+                   <li>Join Affliate</li>
+                </ul>
+           </div>
+           <div class="footer-col-4">
+               <h3>follow us</h3>
+                <ul>
+                   <li> Facebook</li>
+                   <li>Twitter</li>
+                   <li>Instagram</li>
+                   <li>YouTube</li>
+                </ul>
+           </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2022 - ShopWith Me</p>
+    </div>
+</div>
+<!--js for toggle menu-->
+<script>
+    var MenuItems = document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight = "0px";
+    function menutoggle(){
+        if(MenuItems.style.maxHeight == "0px")
+        {
+            MenuItems.style.maxHeight = "200px";
+        }
+        else
+        {
+            MenuItems.style.maxHeight = "0px";
+
+        }
+    }
+</script>
+
+<!-- js for product gallery-->
+<script>
+    var ProductImg = document.getElementById("ProductImg");
+    var SmallImg = document.getElementsByClassName("small-img");
+
+    SmallImg[0].onclick = function()
+    {
+        ProductImg.src = SmallImg[0].src;
+    }
+    SmallImg[1].onclick = function()
+    {
+        ProductImg.src = SmallImg[1].src;
+    }
+    SmallImg[2].onclick = function()
+    {
+        ProductImg.src = SmallImg[2].src;
+    }
+    SmallImg[3].onclick = function()
+    {
+        ProductImg.src = SmallImg[3].src;
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Get the ID from the URL (e.g., ?id=2)
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        if (productId) {
+            fetchProductDetails(productId);
+        } else {
+            console.error("No product ID found in URL");
+        }
+    });
+
+    async function fetchProductDetails(id) {
+        try {
+            // 2. Call the Backend for ONE specific product
+            const response = await fetch(`http://localhost:8080/api/products/${id}`);
+            if (!response.ok) throw new Error("Product not found");
+
+            const product = await response.json();
+
+            // 3. Fill the HTML with data
+            document.getElementById('details-name').innerText = product.name;
+            document.getElementById('details-price').innerText = "₹" + product.price;
+            document.getElementById('details-category').innerText = "Home / " + product.category;
+            document.getElementById('details-description').innerText = product.description;
+            
+            // Update the main image
+            document.getElementById('ProductImg').src = product.imageUrl;
+            // Update the thumbnails to match the main image (Temporary Fix)
+            const thumbnails = document.getElementsByClassName('small-img');
+            Array.from(thumbnails).forEach(img => {
+            img.src = product.imageUrl;
+            });
+
+        } catch (error) {
+            console.error(error);
+            document.getElementById('details-name').innerText = "Product Not Found";
+        }
+    }
+
+    async function addToCart() {
+        // 1. Get the current product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        // 2. Get the quantity (from the input box)
+        const quantity = document.querySelector('input[type="number"]').value;
+
+        // 3. Get product details (from the text on screen)
+        const name = document.getElementById('details-name').innerText;
+        const priceText = document.getElementById('details-price').innerText;
+        const price = parseFloat(priceText.replace('₹', '')); // Remove ₹ symbol
+        const imageUrl = document.getElementById('ProductImg').src;
+
+        // 4. Create the Data Object
+        const cartItem = {
+            productId: productId,
+            productName: name,
+            price: price,
+            quantity: quantity,
+            imageUrl: imageUrl
+        };
+
+        try {
+            // 5. Send POST request to Java Backend
+            const response = await fetch('http://localhost:8080/api/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(cartItem)
+            });
+
+            if (response.ok) {
+                alert("Item added to cart successfully!");
+                // Optional: Go to cart page
+                // window.location.href = "cart.html";
+            } else {
+                alert("Failed to add to cart.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Error connecting to server.");
+        }
+    }
+</script>
+
+</body>
+
+</html>

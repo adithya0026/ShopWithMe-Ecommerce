@@ -1,0 +1,331 @@
+<html>
+    <head>
+        <title>Admin Dashboard</title>
+
+        <!--Bootstrap 5 CDN-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!--chart js-->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    </head>
+
+    <body  onload="Dashboard()"  style=" background:url(https://img.freepik.com/free-vector/e-commerce-flat-concept_1284-22119.jpg?w=740&t=st=1663395716~exp=1663396316~hmac=71477b7df36b51db3a1d0dbdd5450a9789f20a1eb918938e80db09fdce386eff  );
+    background-repeat:no-repeat;background-size:100%;">
+        <div class="container">
+            <!--title-->
+            <h2>ShopwithMe Analytics Dashboard</h2>
+            <!--title End-->
+
+            <br>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <!--card  view-->
+                    <div class="card" style="background-color:#3731d5;">
+                        <div class="card-body">
+                            <h5>Total orders</h5>
+                            <h1>250</h1>
+
+                        </div>
+
+                    </div>
+                    <!--card  view end-->
+
+                </div>
+
+                <div class="col-lg-3">
+                    <!--card  view-->
+                    <div class="card" style="background-color:#d531ac;">
+                        <div class="card-body">
+                            <h5>Successful orders</h5>
+                            <h1>80</h1>
+
+                        </div>
+
+                    </div>
+                    <!--card  view end-->
+
+                </div>
+                
+                
+                <div class="col-lg-3">
+                    <!--card  view-->
+                    <div class="card" style="background-color:#0a9e19;">
+                        <div class="card-body">
+                            <h5 style="color: white;">Abandoned orders</h5>
+                            <h1 style="color:white;">210</h1>
+
+                        </div>
+
+                    </div>
+                    <!--card  view end-->
+
+
+                </div>
+                <br>
+                <div class="col-lg-3">
+                    <!--card  view-->
+                    <div class="card" style="background-color:#f7f011;">
+                        <div class="card-body">
+                            <h5 style="color:black;">Ad clicks</h5>
+                            <h1 style="color:black;">100</h1>
+
+                        </div>
+
+                    </div>
+                    <!--card  view end-->
+
+
+                </div>
+                
+                <br> 
+
+                <div class="col-lg-3">
+                    <!--card  view-->
+                    <div class="card" style="background-color:#e1490c;">
+                        <div class="card-body">
+                            <h5 style="color:white;">Cancelled orders</h5>
+                            <h1 style="color: white;">150</h1>
+
+                        </div>
+
+                    </div>
+                    <!--card  view end-->
+
+
+                    
+
+                </div>
+                
+            </div>
+
+            <br>
+
+            <!--Table end Graph-->
+            <div class="row">
+                <div class="col-6">
+
+                    <br>
+
+                    <!--table view-->
+                    <table class="table"  style="background-color:aliceblue;">
+                        <thead class="table-primary">
+                            <tr>
+                                <td>Sl</td>
+                                <td>Date</td>
+                                <td>Name</td>
+                                <td>Email / Phone</td>
+                                <td>comments</td>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>11-10-2022</td>
+                                <td>Hruthik</td>
+                                <td>hruthik415@gmail.com / 7899889615</td>
+                                <td>puma blue shirt is too good to wear</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>7-10-2022</td>
+                                <td>vasu p</td>
+                                <td>adithyahp18@gmail.com / 7899889615</td>
+                                <td>HRX socks is very thin</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>6-10-2022</td>
+                                <td>dhanajay</td>
+                                <td>dhanu15@gmail.com / 7899889615</td>
+                                <td>voochie shoes is very good quality</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <!--table view end-->
+                </div>
+
+                <div class="col-6">
+                    <!--to get the graph usec canvas tag using chart js in search bar getting started,then copy the div tag-->
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div> 
+
+                </div>
+
+            </div>
+
+            
+
+            <!--Table end Graph End-->
+
+        </div>
+
+        <!--Javascript-->
+
+        <br>
+
+        <script>
+                        
+            
+
+            /*onboard dashboard - ad click*/
+            function dashboardData(){
+            
+                /*AJAX ad clicks*/
+                /*AJAX*/
+                    var xhttpProducts = new XMLHttpRequest();
+                    xhttpProducts.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200)
+                    {
+                        console.log(this.responseText)
+
+                    }
+
+                    };
+                    xhttpProducts.open("GET","http://localhost:5000/ad-click-data",true);
+                    xhttpProducts.send();
+
+                    /*End AJAX*/
+                /*AJAX ad clicks*/
+                /*AJAX contact Table*/
+                var xhttpProducts = new XMLHttpRequest();
+                xhttpProducts.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200)
+                    {
+                    var jsondata=JSON.parse(this.responseText)  
+                    var jasonDataLength=jsondata.length;
+
+                    var tableHtmlData='';
+                    var sl=0
+                    for(var i=jasonDataLength;i<jasonDataLength;i++)
+                    {
+                        sl++
+                        tableHtmlData+='<tr>';
+
+                        tableHtmlData+='<td>'+sl+'</td>'
+                        tableHtmlData+='<td>'+jsondata[i]['created_data']+'</td>';
+                        tableHtmlData+='<td>'+jsondata[i]['name']+'</td>';
+                        tableHtmlData+='<td>'+jsondata[i]['email']+'/'+jsondata[i]['mobile']+'</td>';
+                        tableHtmlData+='<td>'+jsondata[i]['comment']+'</td>';
+
+
+
+                        tableHtmlData+='<tr>';
+
+                    }
+                    document.getElementById('tableData').innerHTML=tableHtmlData;
+                }
+                };
+                xhttpProducts.open("GET","http://localhost:5000/",true);
+                xhttpProducts.send();
+                /*AJAX contact Table End*/
+
+                
+            }
+                /*bar graph*/
+            var xhttpBarGraph = new XMLHttpRequest();
+            xhttpBarGraph.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200)
+                {
+                    console.log(this.responseText);
+                    var jsondata=JSON.parse(this.rresponseText) 
+
+                    var jasonDataLength=jasonData.length;
+                    var monthArr=[];
+                    var passingValue ='';
+
+                    for(var j=0;j<jasonDataLength;j++)
+                    {
+                        if(jsondata[j]['month']=='None')
+                        {
+                            passingValue=0;
+                        }
+                        else
+                        {
+                            passingValue=jsonData[j]['month']
+
+                        }
+                        monthArr.push(passingValue)
+                        console.log(jasondata[j]['month'])
+
+                         
+
+                    }
+                    
+                    /*bar graph config */
+                    const data = {
+                    labels: ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'],
+                    datasets: [{
+                        label: 'Visitors over months',
+                        data: [65, 59, 80, 81, 56, 55, 40],
+                        backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)',
+                        'rgba(201, 203, 207,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        ],
+                        borderColor: [
+                        'rgb(255, 99, 132,0.2)',
+                        'rgb(255, 159, 64),0.2',
+                        'rgb(255, 205, 86,0.2)',
+                        'rgb(75, 192, 192,0.2)',
+                        'rgb(54, 162, 235,0.2)',
+                        'rgb(153, 102, 255,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        'rgb(201, 203, 207,0.2)',
+                        ],
+                        borderWidth: 1
+                    }]
+                    };
+                        const config = {
+                        type: 'bar',
+                        data: data,
+                        options: {
+                        scales: {
+                            y: {
+                            beginAtZero: true
+                        }
+                        }
+                        },
+                        };
+
+                        const myChart = new Chart(
+                        document.getElementById('myChart'),
+                        config
+                        );
+                         /*bar graphh config end*/
+
+                        console.log("================"+jasonData)
+                                
+
+
+                         }
+
+                        };//for loop end
+                            xhttpBarGraph.open("GET","http://localhost:5000/bar-chart",true);
+                            xhttpBarGraph.send();
+                
+                /*onboard dashboard  End - ad click*/
+            </script>
+            
+            <!--Javascript-->
+        </body>
+    </html>
